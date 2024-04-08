@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: authapp_db
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: authapp_db
+    volumes:
+      - authapp_pgdata:/var/lib/postgresql/data
+
+volumes:
+  authapp_pgdata:
