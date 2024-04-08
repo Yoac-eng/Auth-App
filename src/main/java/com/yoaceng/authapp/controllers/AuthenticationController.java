@@ -1,7 +1,9 @@
 package com.yoaceng.authapp.controllers;
 
 
+import com.yoaceng.authapp.config.TokenService;
 import com.yoaceng.authapp.domain.user.AuthenticationDTO;
+import com.yoaceng.authapp.domain.user.LoginResponseDTO;
 import com.yoaceng.authapp.domain.user.RegisterDTO;
 import com.yoaceng.authapp.domain.user.User;
 import com.yoaceng.authapp.repositories.UserRepository;
@@ -24,13 +26,17 @@ public class AuthenticationController {
     private AuthenticationManager authenticationManager;
     @Autowired
     private UserRepository repository;
+    @Autowired
+    private TokenService tokenService;
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data){
            var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
            var auth = authenticationManager.authenticate(usernamePassword);
 
-           return ResponseEntity.ok().build();
+           var token = tokenService.generateToken((User) auth.getPrincipal());
+
+           return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
     @PostMapping("/register")
