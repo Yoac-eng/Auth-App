@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Default controller to handle Person related requests.
+ *
+ * @author Cayo Cutrim
+ */
 @RestController
 @RequestMapping("/person")
 public class PersonController   {

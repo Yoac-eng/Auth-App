@@ -1,7 +1,7 @@
 package com.yoaceng.authapp.controllers;
 
 
-import com.yoaceng.authapp.config.TokenService;
+import com.yoaceng.authapp.security.TokenService;
 import com.yoaceng.authapp.domain.user.AuthenticationDTO;
 import com.yoaceng.authapp.domain.user.LoginResponseDTO;
 import com.yoaceng.authapp.domain.user.RegisterDTO;
@@ -18,6 +18,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
+/**
+ * Controller responsible for the authentication endpoints
+ *
+ * @author Cayo Cutrim
+ */
 @RestController
 @RequestMapping("/auth")
 public class AuthenticationController {
